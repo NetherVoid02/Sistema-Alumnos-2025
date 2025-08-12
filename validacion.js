@@ -1,5 +1,5 @@
 function separarNombreCompleto(texto) {
-    const regex = /^(?<apellido>[A-ZÁÉÍÓÚÑ\s]+)\s(?<nombre>[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+(?:\s[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+)*)$/;
+    const regex = /^(?<apellido>[A-ZÁÉÍÓÚÑ\s]+)\s(?<nombre>[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+(?:\s[A-ZÁÉÍÓÚÑ][a-záéíóúñ])*)$/;
     const match = texto.trim().match(regex);
 
     if (match && match.groups) {
