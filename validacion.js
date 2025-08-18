@@ -1,135 +1,102 @@
-function separarNombreCompleto(texto) {
-    const regex = /^(?<apellido>[A-ZÁÉÍÓÚÑ\s]+)\s(?<nombre>[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+(?:\s[A-ZÁÉÍÓÚÑ][a-záéíóúñ])*)$/;
-    const match = texto.trim().match(regex);
-
-    if (match && match.groups) {
-        return {
-            apellido: match.groups.apellido.trim(),
-            nombre: match.groups.nombre.trim()
-        };
-    } else {
-        return {
-            error: "Formato inválido. Asegurate de que los apellidos estén en MAYÚSCULAS y los nombres Capitalizados."
-        };
-    }
-}
-
-function validarDNI(dni) {
-    const dniRegex = /^(\d{7,8}|\d{1,2}\.\d{3}\.\d{3})$/;
-    if (!dniRegex.test(dni)) {
-        return { error: "El DNI no es válido" };
-    }
-    return dni.replace(/\./g, '');
-}
-
-function validarLegajo(legajo) {
-    const legajoRegex = /^\d+$/;
-    if (!legajoRegex.test(legajo)) {
-        return {
-            error: "El legajo no es válido, contiene letras, símbolos o está vacío"
-        };
-    }
-    return legajo;
-}
-
-function validarDatosExcel(datos) {
-    const columnasEsperadas = ["D.N.I.", "Apellido y Nombres", "leg."];
-
-    const encabezados = datos[0];         // Fila con encabezados
-    const filas = datos.slice(2);         // Saltea fila 1 y 2
-
-    const obtenidas = Object.keys(encabezados);  // Obtené los nombres de las columnas
-
-    const columnasDeseadas = ['D.N.I.', 'Apellido y Nombres', 'leg.'];
-
-    // Mostramos solo los encabezados deseados
-    const encabezadosFiltrados = {};
-    for (const columna of columnasDeseadas) {
-    encabezadosFiltrados[columna] = encabezados[columna];
-    }
-    console.log('Encabezados:', encabezadosFiltrados);
-
-    const filasFiltradas = filas.map(fila => {
-    const nuevaFila = {};
-    for (const columna of columnasDeseadas) {
-        nuevaFila[columna] = fila[columna];
-    }
-    return nuevaFila;
-    });
-
-    console.log('Filas:', filasFiltradas);
-
-
-    console.log("Encabezados:", encabezados);
-    console.log("Tipo de encabezados:", typeof encabezados);
-
-    // Verifica columnas faltantes y extra
-    const faltantes = columnasEsperadas.filter(col => !obtenidas.includes(col));
-    const extras = obtenidas.filter(col => !columnasEsperadas.includes(col));
-
-    if (faltantes.length > 0) {
-        return {
-            valido: false,
-            tipo: "columnas",
-            faltantes,
-            extras
-        };
-    }
+function validarDatos(datos) {
 
     const errores = [];
     const datosLimpios = [];
 
-    filas.forEach((fila, i) => {
-        const nrofila = i + 3; // porque se saltean dos filas
+    const dniVistos = new Set();
+    const legajosVistos = new Set();
+    const foliosVistos = new Set();
 
-        const dni = fila["D.N.I."]?.toString().trim() ?? "";
-        const nombreCompleto = fila["Apellido y Nombres"]?.toString().trim() ?? "";
-        const legajo = fila["leg."]?.toString().trim() ?? "";
+    datos.forEach((fila, i) => {
+        const filaNumero = i + 3; // Para mostrar el número de fila real
+        let filaValida = true;
 
-        const filaErrores = [];
-
-        // Validación de DNI
-        const dniValidado = validarDNI(dni);
-        if (typeof dniValidado === "object" && dniValidado.error) {
-            filaErrores.push(dniValidado.error);
-        }
-
-        // Validación de nombre y apellido
-        const nombreValidado = separarNombreCompleto(nombreCompleto);
-        if (nombreValidado.error) {
-            filaErrores.push(nombreValidado.error);
-        }
-
-        // Validación de legajo
-        const legajoValidado = validarLegajo(legajo);
-        if (typeof legajoValidado === "object" && legajoValidado.error) {
-            filaErrores.push(legajoValidado.error);
-        }
-
-        if (filaErrores.length > 0) {
-            errores.push({ fila: nrofila, errores: filaErrores });
+        // --- Validar y normalizar DNI ---
+        const dniRegex = /^(\d{7,8}|\d{1,2}\.\d{3}\.\d{3})$/;
+        if (!dniRegex.test(fila.dni)) {
+            errores.push({ fila: filaNumero, error: "El DNI no es válido" });
+            filaValida = false;
         } else {
+            // Quitar los puntos
+            const dniLimpio = fila.dni.toString().replace(/\./g, '');
+
+            if(dniVistos.has(dniLimpio)) {
+                errores.push({
+                    fila: filaNumero,
+                    error: "DNI duplicado"
+                });
+                filaValida = false;
+            } else {
+                fila.dni = dniLimpio;
+                dniVistos.add(dniLimpio);
+            }
+        }
+
+        // --- Validar y separar nombre completo ---
+        fila.nombreCompleto = fila.nombreCompleto.trim().replace(/\s+/g, ' ');
+        const nombreCompletoRegex = /^(?<apellido>[A-ZÁÉÍÓÚÑ\s]+)\s(?<nombre>[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+(?:\s(?:[a-záéíóúñ]+|[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+))*)$/;
+        const match = fila.nombreCompleto.match(nombreCompletoRegex);
+        if (!match || !match.groups) {
+            errores.push({ fila: filaNumero, error: "El nombre no es válido" });
+            filaValida = false;
+        } else {
+            fila.apellido = match.groups.apellido.trim();
+            fila.nombre = match.groups.nombre.trim();
+        }
+
+        // --- Validar legajo ---
+        const numeroRegex = /^\d+$/;
+        if (!numeroRegex.test(fila.legajo)) {
+            errores.push({ 
+                fila: filaNumero, 
+                error: "El legajo no es un número válido" 
+            });
+            filaValida = false;
+        } else if (legajosVistos.has(fila.legajo)) {
+            errores.push({ fila: filaNumero, 
+                error: "Legajo duplicado" 
+            });
+            filaValida = false;
+        } else {
+            legajosVistos.add(fila.legajo);
+        }
+
+        // --- Validar libro ---
+        if (!numeroRegex.test(fila.libro)) {
+            errores.push({ fila: filaNumero, error: "El libro no es un número válido" });
+            filaValida = false;
+        }
+
+        // --- Validar folio ---
+        if (!numeroRegex.test(fila.folio)) {
+            errores.push({ fila: filaNumero, error: "El folio no es un número válido" });
+            filaValida = false;
+        } else if (foliosVistos.has(fila.folio)) {
+            errores.push({ fila: filaNumero, error: "Folio duplicado" });
+            filaValida = false;
+        } else {
+            foliosVistos.add(fila.folio);
+        }
+
+        // --- Guardar fila limpia ---
+        if (filaValida) {
             datosLimpios.push({
-                dni: Number(dniValidado),
-                apellido: nombreValidado.apellido,
-                nombre: nombreValidado.nombre,
-                legajo: Number(legajoValidado)
+                dni: fila.dni,
+                nombre: fila.nombre,
+                apellido: fila.apellido,
+                legajo: Number(fila.legajo),
+                libro: Number(fila.libro),
+                folio: Number(fila.folio)
             });
         }
     });
 
-    if (errores.length > 0) {
-        return {
-            valido: false,
-            tipo: "filas",
-            errores
-        };
-    }
-
-    return {
-        valido: true,
-        datos: datosLimpios
+    return{
+        valido: errores.length === 0,
+        errores,
+        datos: datos.filter((_, i) => !errores.some(e => e.fila === i + 1))  //Devolver solo los datos válidos
     };
 }
 
-module.exports = validarDatosExcel;
+module.exports = validarDatos;
+

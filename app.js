@@ -1,37 +1,40 @@
-// Requiere los modulos necesarios
-const leerExcel = require('./lectura');
+const { leerExcel } = require('./lectura');
 const validarDatos = require('./validacion');
-const cargarAlumnos = require('./carga');
+const { cargarAlumnos } = require('./carga');
 
-// Ruta del archivo a leer
+// Archivo Excel
 const archivo = './buscador-matriz-02-1.xlsx';
+
+// Rango de filas desde la terminal: node app.js 2 50
+const filaInicio = parseInt(process.argv[2]) || 2;
+const filaFin = parseInt(process.argv[3]);
 
 async function ejecutarProceso() {
     try {
         console.log('📥 Leyendo archivo Excel...');
-        const datos = await leerExcel(archivo);
+        const datos = leerExcel(archivo, filaInicio, filaFin);
+
         if (!datos || datos.length === 0) {
             console.error('❌ No se encontraron datos en el archivo Excel.');
             return;
         }
 
         console.log('🔍 Validando datos...');
-        const resultadoValidacion = validarDatos(datos);
+        const resultado = validarDatos(datos);
 
-        if (!resultadoValidacion.valido) {
+        if (!resultado.valido) {
             console.error('❌ Error en validación:');
-            if (resultadoValidacion.tipo === 'filas' && resultadoValidacion.errores) {
-                resultadoValidacion.errores.forEach(errorFila => {
-                    console.error(`Fila ${errorFila.fila}: ${errorFila.errores.join(', ')}`);
+            if (resultado.tipo === 'filas' && resultado.errores) {
+                resultado.errores.forEach(e => {
+                    console.error(`Fila ${e.fila}: ${e.error || e.errores.join(', ')}`);
                 });
             } else {
-                console.error(resultadoValidacion);
+                console.error(resultado);
             }
             return;
         }
 
-        const datosValidados = resultadoValidacion.datos;
-
+        const datosValidados = resultado.datos;
         if (!datosValidados || datosValidados.length === 0) {
             console.error('❌ Ningún dato válido para insertar.');
             return;
@@ -47,5 +50,5 @@ async function ejecutarProceso() {
     }
 }
 
-// Ejecutamos el proceso
+// Ejecutar proceso
 ejecutarProceso();

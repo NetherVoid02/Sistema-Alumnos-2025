@@ -4,26 +4,30 @@ const pool = new Pool({
     user: 'postgres',
     host: 'localhost',
     database: 'migracionPrueba',
-    password: '1234'
+    password: '1234',
 });
 
 async function cargarAlumnos(alumnos) {
     for (const alumno of alumnos) {
-        const { legajo, nombre, apellido, dni } = alumno;
+        const { dni, nombre, apellido, legajo, libro, folio } = alumno;
 
         try {
+
             await pool.query(
-                `INSERT INTO alumnos(id_leg, nombre, apellido, dni) VALUES ($1, $2, $3, $4)`,
-                [legajo, nombre, apellido, dni]
+                `INSERT INTO alumno(dni, nombre, apellido, id_leg, libro, folio) VALUES ($1, $2, $3, $4, $5, $6)`,
+                [dni, nombre, apellido, legajo, libro, folio]
             );
 
             console.log(`✅ Insertado: ${nombre} ${apellido}`);
+
         } catch (error) {
-            console.error(`❌ Error al insertar a ${nombre} ${apellido}:`, error.message);
+
+            console.error(`❌ Error al insertar ${nombre} ${apellido}:`, error.message);
         }
     }
 
     await pool.end();
+
 }
 
-module.exports = cargarAlumnos;
+module.exports = { cargarAlumnos };
