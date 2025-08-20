@@ -1,8 +1,19 @@
+/**
+ * SISTEMA DE ALUMNOS 2025 - MIGRACIÓN DE DATOS
+ * 
+ * ACLARACIÓN: Este sistema NO es de "agentes", es de ALUMNOS (estudiantes)
+ * 
+ * Funcionalidad: Migra datos de estudiantes desde Excel hacia PostgreSQL
+ * - Lee datos de estudiantes desde archivo Excel
+ * - Valida DNI, nombres, legajos, libros y folios
+ * - Carga datos validados a la base de datos
+ */
+
 const { leerExcel } = require('./lectura');
 const validarDatos = require('./validacion');
 const { cargarAlumnos } = require('./carga');
 
-// Archivo Excel
+// Archivo Excel con datos de ESTUDIANTES
 const archivo = './buscador-matriz-02-1.xlsx';
 
 // Rango de filas desde la terminal: node app.js 2 50
@@ -50,5 +61,5 @@ async function ejecutarProceso() {
     }
 }
 
-// Ejecutar proceso
+// Ejecutar proceso de migración de ESTUDIANTES (no agentes)
 ejecutarProceso();

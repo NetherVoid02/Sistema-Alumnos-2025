@@ -5,10 +5,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": ["alumnos", "estudiantes", "migracion", "excel", "postgresql"],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "Sistema de migración de datos de ALUMNOS/ESTUDIANTES desde Excel hacia PostgreSQL. NO es un sistema de agentes.",
   "dependencies": {
     "pg": "^8.16.3",
     "xlsx": "^0.18.5",
