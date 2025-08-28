@@ -1,0 +1,17 @@
+/* ===== Contenido principal (iframe) ===== */
+
+main iframe#contenido {
+  display: flex;
+  flex-direction: column;
+  height: 74vh ;
+  width: 100%;
+}
+
+iframe#contenido {
+  width: 100%;
+  border: none;
+  display: block;
+  overflow: hidden; /* Oculta scroll interno */
+  height: auto; /* Importante para poder cambiar desde JS */
+  min-height: 100px; /* Opcional, para que no colapse si vacío */
+}
