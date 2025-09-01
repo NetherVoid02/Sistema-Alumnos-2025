@@ -136,7 +136,7 @@ router.post('/login', async (req, res) => {
         1, // id_operacion para login
         user.id_usuario,
         req.ip,
-        `El usuario ${user.id_usuario} inició sesión`
+        `El usuario ${user.nombre} inició sesión`
       );
 
       if (requiereCambioPassword) {
@@ -162,7 +162,7 @@ router.post('/login', async (req, res) => {
           5, // id_operacion para bloqueo
           user.id_usuario,
           req.ip,
-          `El usuario ${user.id_usuario} fue bloqueado tras 3 intentos fallidos`
+          `El usuario ${user.nombre} fue bloqueado tras 3 intentos fallidos`
         );
         return res.json({ success: false, message: 'Usuario bloqueado por demasiados intentos. Contacte al administrador.' });
       } else {

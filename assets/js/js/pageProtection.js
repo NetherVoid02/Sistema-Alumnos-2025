@@ -40,7 +40,7 @@ if (document.getElementById('cerrarSesion')) {
             const usuario = JSON.parse(usuarioStr);
             await registrarLog(
                 2, // logout operacion id
-                `El usuario ${usuario.id_usuario} cerró sesión`
+                `El usuario ${usuario.nombre} cerró sesión`
             );
         }
         localStorage.removeItem('usuario');

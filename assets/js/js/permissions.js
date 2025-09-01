@@ -93,7 +93,7 @@ function guardarNuevoRolPermisos() {
             alert('Rol cambiado correctamente');
             registrarLog(
                 9, // ID de operación de cambio de rol
-                `El usuario ${usuario.id_usuario} cambió el rol del usuario ${usuarioSeleccionadoPermisos.id_usuario} (${usuarioSeleccionadoPermisos.nombre}) al rol ${nombreRol}`,
+                `El usuario ${usuario.nombre} cambió el rol del usuario (${usuarioSeleccionadoPermisos.nombre}) al rol ${nombreRol}`,
                 usuarioSeleccionadoPermisos.nombre
             );
             cerrarModalGestionarPermisos();
@@ -205,7 +205,7 @@ function guardarNuevoGrupoGrupos() {
             alert('Grupo cambiado correctamente');
             registrarLog(
                 10, 
-                `El usuario ${usuario.id_usuario} cambió el grupo del usuario ${usuarioSeleccionadoGrupos.id_usuario} (${usuarioSeleccionadoGrupos.nombre}) al grupo ${nombreGrupo}`,
+                `El usuario ${usuario.nombre} cambió el grupo del usuario (${usuarioSeleccionadoGrupos.nombre}) al grupo ${nombreGrupo}`,
                 usuarioSeleccionadoGrupos.nombre
             );
             cerrarModalGestionarGrupos();

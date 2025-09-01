@@ -1,27 +1,51 @@
 // ========== MODULO DE CREAR USUARIO ==========
 
 // ========== FORMULARIO DE NUEVO USUARIO ==========
-// // Validar y enviar nuevos datos de usuario (y registrarlos en el registro de auditoría)
+// Validar y enviar nuevos datos de usuario (y registrarlos en el registro de auditoría)
 document.getElementById('formAgregarUsuario').addEventListener('submit', async function(event) {
     event.preventDefault();
     const btn = document.getElementById('btnAgregarUsuario');
     btn.disabled = true;
     btn.textContent = "Guardando...";
 
-    const data = {
-        nombre: document.getElementById('nombre').value,
-        password: document.getElementById('password').value,
-        dni: document.getElementById('dni').value,
-        id_rol: document.getElementById('rol').value,
-        id_grupo: document.getElementById('grupo').value
-    };
+    // Obtener los valores del formulario, incluyendo los campos repetidos
+    const nombre = document.getElementById('nombre').value;
+    const password = document.getElementById('password').value;
+    const password2 = document.getElementById('password2').value;
+    const dni = document.getElementById('dni').value;
+    const dni2 = document.getElementById('dni2').value;
+    const id_rol = document.getElementById('rol').value;
+    const id_grupo = document.getElementById('grupo').value;
 
-    if (!validarPassword(data.password)) {
+    // VALIDACIÓN DE REPETIR CONTRASEÑA
+    if (password !== password2) {
+        alert('Las contraseñas no coinciden. Verifique ambas contraseñas.');
+        btn.disabled = false;
+        btn.textContent = "Agregar Usuario";
+        return;
+    }
+    // VALIDACIÓN DE REPETIR DNI
+    if (dni !== dni2) {
+        alert('Los DNI no coinciden. Verifique ambos DNI.');
+        btn.disabled = false;
+        btn.textContent = "Agregar Usuario";
+        return;
+    }
+    // VALIDACIÓN DE PASSWORD SEGURA
+    if (!validarPassword(password)) {
         alert('La contraseña debe tener entre 8 y 16 caracteres, incluir mayúsculas, minúsculas, números y caracteres especiales.');
         btn.disabled = false;
         btn.textContent = "Agregar Usuario";
         return;
     }
+
+    const data = {
+        nombre,
+        password,
+        dni,
+        id_rol,
+        id_grupo
+    };
 
     try {
         const res = await fetch('http://localhost:3000/api/usuarios', {
@@ -36,7 +60,7 @@ document.getElementById('formAgregarUsuario').addEventListener('submit', async f
             // REGISTRO
             registrarLog(
                 3,
-                `El usuario ${usuario.id_usuario} dio de alta al usuario ${usuarioCreado.id_usuario} (${usuarioCreado.nombre})`,
+                `El usuario ${usuario.nombre} dio de alta al usuario (${usuarioCreado.nombre})`,
                 usuarioCreado.nombre
             );
             cerrarModalAgregarUsuario();
@@ -54,7 +78,7 @@ document.getElementById('formAgregarUsuario').addEventListener('submit', async f
 });
 
 // ========== AGREGAR MODAL DE USUARIO ==========
-// // Cargar roles y grupos disponibles
+// Cargar roles y grupos disponibles
 
 function abrirModalAgregarUsuario() {
     document.getElementById('modalAgregarUsuario').style.display = 'flex';
@@ -95,4 +119,18 @@ function cargarRolesYGrupos() {
             selectGrupo.innerHTML += `<option value="${g.id_grupo}">${g.nombre}</option>`;
         });
     });
+}
+
+// ========== FUNCIÓN DE VALIDACIÓN DE CONTRASEÑA SEGURA ==========
+// Si no la tienes definida global, agrégala:
+function validarPassword(password) {
+    const minLength = 8;
+    const maxLength = 16;
+    if (typeof password !== 'string') return false;
+    if (password.length < minLength || password.length > maxLength) return false;
+    if (!/[A-Z]/.test(password)) return false; // al menos una mayúscula
+    if (!/[a-z]/.test(password)) return false; // al menos una minúscula
+    if (!/[0-9]/.test(password)) return false; // al menos un número
+    if (!/[!@#$%^&*()_\-+=\[\]{};:,.<>|\/?]/.test(password)) return false; // al menos un especial
+    return true;
 }

@@ -39,7 +39,7 @@ function deshabilitarUsuario() {
                 alert("Usuario deshabilitado correctamente");
                 registrarLog(
                     5,
-                    `El usuario ${usuario.id_usuario} deshabilitó al usuario ${usuarioAccionId} (${usuarioAccionNombre})`,
+                    `El usuario ${usuario.nombre} deshabilitó al usuario (${usuarioAccionNombre})`,
                     usuarioAccionNombre
                 );
                 cerrarModalAccionUsuario();
@@ -59,7 +59,7 @@ function habilitarUsuario() {
                 alert("Usuario habilitado correctamente");
                 registrarLog(
                     6,
-                    `El usuario ${usuario.id_usuario} habilitó al usuario ${usuarioAccionId} (${usuarioAccionNombre})`,
+                    `El usuario ${usuario.nombre} habilitó al usuario (${usuarioAccionNombre})`,
                     usuarioAccionNombre
                 );
                 cerrarModalAccionUsuario();
@@ -79,7 +79,7 @@ function desbloquearUsuario() {
                 alert("Usuario desbloqueado correctamente");
                 registrarLog(
                     8, 
-                    `El usuario ${usuario.id_usuario} desbloqueó a ${usuarioAccionId} (${usuarioAccionNombre})`,
+                    `El usuario ${usuario.nombre} desbloqueó a (${usuarioAccionNombre})`,
                     usuarioAccionNombre
                 );
                 cerrarModalAccionUsuario();

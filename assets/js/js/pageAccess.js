@@ -4,15 +4,18 @@
 async function registrarAccesoApartado(nombreApartado) {
     const usuarioStr = localStorage.getItem('usuario');
     let id_usuario = null;
+    let nombre_usuario = null;
     if (usuarioStr) {
         try {
             const usuarioObj = JSON.parse(usuarioStr);
             id_usuario = usuarioObj.id_usuario;
+            nombre_usuario = usuarioObj.nombre; // <-- Usar nombre aquí
+            // Si tu campo es 'usuario', usa: nombre_usuario = usuarioObj.usuario;
         } catch(e) {
             id_usuario = null;
         }
     }
-    if (id_usuario) {
+    if (id_usuario && nombre_usuario) {
         await fetch('http://localhost:3000/api/logs', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -20,13 +23,12 @@ async function registrarAccesoApartado(nombreApartado) {
                 id_operacion: 11, // acceso_apartado
                 id_usuario,
                 ip: null,
-                detalle: `El usuario ${id_usuario} accedió al apartado ${nombreApartado}`,
+                detalle: `El usuario ${nombre_usuario} accedió al apartado ${nombreApartado}`,
                 usuario_afectado: null
             })
         });
     }
 }
-
 // Registrar automáticamente el acceso cuando se carga la página
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -40,6 +42,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     else if (path.includes('config.html')) pageName = 'Configuración';
     else if (path.includes('inicio.html') || path === '/') pageName = 'Inicio';
     else if (path.includes('bitacora.html')) pageName = 'Bitácora';
+     else if (path.includes('gestionUsuarios.html')) pageName = 'Gestion de usuarios';
     
     await registrarAccesoApartado(pageName);
 });

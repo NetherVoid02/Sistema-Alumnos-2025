@@ -90,37 +90,52 @@
                 </div>
             </div>
             <!-- modal para agregar usuario-->
-            <div id="modalAgregarUsuario" class="modal fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50" style="display:none;">
-                <div class="bg-white rounded-lg p-6 w-full max-w-md">
-                    <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-lg font-bold">Agregar Nuevo Usuario</h2>
-                        <button onclick="cerrarModalAgregarUsuario()" class="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
-                    </div>
-                    <form id="formAgregarUsuario">
-                        <div class="mb-4">
-                            <label for="nombre" class="block mb-1 font-semibold">Nombre:</label>
-                            <input type="text" id="nombre" name="nombre" maxlength="15" class="w-full border px-3 py-2 rounded" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="password" class="block mb-1 font-semibold">Contraseña:</label>
-                            <input type="password" id="password" name="password" maxlength="15" class="w-full border px-3 py-2 rounded" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="dni" class="block mb-1 font-semibold">DNI:</label>
-                            <input type="text" id="dni" name="dni" maxlength="8" class="w-full border px-3 py-2 rounded" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="rol" class="block mb-1 font-semibold">Rol:</label>
-                            <select id="rol" name="rol" class="w-full border px-3 py-2 rounded" required></select>
-                        </div>
-                        <div class="mb-4">
-                            <label for="grupo" class="block mb-1 font-semibold">Grupo:</label>
-                            <select id="grupo" name="grupo" class="w-full border px-3 py-2 rounded" required></select>
-                        </div>
-                        <button id="btnAgregarUsuario" type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded w-full">Agregar Usuario</button>
-                    </form>
-                </div>
-            </div>
+      <div id="modalAgregarUsuario" class="modal fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50" style="display:none;">
+  <div class="bg-white rounded-xl shadow-lg px-10 py-8 max-w-2xl w-full">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-lg font-bold">Agregar Nuevo Usuario</h2>
+      <button onclick="cerrarModalAgregarUsuario()" class="text-gray-400 hover:text-gray-600 text-2xl font-bold ml-4">&times;</button>
+    </div>
+    <form id="formAgregarUsuario">
+      <div class="grid grid-cols-2 gap-6">
+        <div>
+          <div class="mb-4">
+            <label for="nombre" class="block mb-1 font-semibold">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" maxlength="15" class="w-full border px-3 py-2 rounded" required>
+          </div>
+          <div class="mb-4">
+            <label for="password" class="block mb-1 font-semibold">Contraseña:</label>
+            <input type="password" id="password" name="password" maxlength="16" class="w-full border px-3 py-2 rounded" required>
+          </div>
+          <div class="mb-4">
+            <label for="password2" class="block mb-1 font-semibold">Repetir Contraseña:</label>
+            <input type="password" id="password2" name="password2" maxlength="16" class="w-full border px-3 py-2 rounded" required>
+          </div>
+        </div>
+        <div>
+          <div class="mb-4">
+            <label for="dni" class="block mb-1 font-semibold">DNI:</label>
+            <input type="text" id="dni" name="dni" maxlength="8" class="w-full border px-3 py-2 rounded" required>
+          </div>
+          <div class="mb-4">
+            <label for="dni2" class="block mb-1 font-semibold">Repetir DNI:</label>
+            <input type="text" id="dni2" name="dni2" maxlength="8" class="w-full border px-3 py-2 rounded" required>
+          </div>
+          <div class="mb-4">
+            <label for="rol" class="block mb-1 font-semibold">Rol:</label>
+            <select id="rol" name="rol" class="w-full border px-3 py-2 rounded" required></select>
+          </div>
+          <div class="mb-6">
+            <label for="grupo" class="block mb-1 font-semibold">Grupo:</label>
+            <select id="grupo" name="grupo" class="w-full border px-3 py-2 rounded" required></select>
+          </div>
+        </div>
+      </div>
+      <button id="btnAgregarUsuario" type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded w-full font-bold mt-4">Agregar Usuario</button>
+    </form>
+  </div>
+</div>
+
             <!-- modal gestionar permisos -->
             <div id="modalGestionarPermisos" class="modal fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-60" style="display:none;">
                 <div class="bg-white rounded-xl shadow-lg w-full max-w-lg p-8">
@@ -198,6 +213,7 @@
             </div>
         </div>
         <!-- TABLA DE USUARIOS -->
+<!-- TABLA DE USUARIOS -->
         <section id="usuarios-section" class="mt-8">
             <h2 class="text-2xl font-bold flex items-center mb-4">
                 <span class="mr-2">👤</span> Tabla de Usuarios
@@ -219,7 +235,6 @@
                     <tr class="bg-blue-600 text-white">
                         <th class="p-2">ID</th>
                         <th>Nombre</th>
-                        <th>Contraseña</th>
                         <th>DNI</th>
                         <th>Rol</th>
                         <th>Grupo</th>
@@ -270,25 +285,7 @@
 
             </div>
         </div>
-    </div>
-        <!-- modal para ver contraseñas (solo admins) -->
-<div id="modalVerPass" class="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50" style="display:none;">
-  <div class="bg-white rounded-lg p-6 w-full max-w-xs shadow-lg">
-    <h2 class="text-lg font-bold text-center mb-4">Credenciales de Administrador</h2>
-    <form id="formVerPass">
-      <div class="mb-3">
-        <label class="font-semibold mb-1 block">Usuario:</label>
-        <input type="text" id="verPassUsuario" class="w-full border px-3 py-2 rounded" required>
-      </div>
-      <div class="mb-4">
-        <label class="font-semibold mb-1 block">Contraseña:</label>
-        <input type="password" id="verPassPassword" class="w-full border px-3 py-2 rounded" required>
-      </div>
-      <button class="bg-blue-600 text-white px-4 py-2 rounded w-full" type="submit">Ver contraseña</button>
-      <button class="mt-2 text-gray-500 hover:text-gray-800 w-full" type="button" onclick="cerrarModalVerPass()">Cancelar</button>
-    </form>
-  </div>
-</div>
+    </div> 
 <!-- Modal Cambiar Contraseña -->
 <div id="modalCambiarPassword" class="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50" style="display:none;">
   <div class="bg-white rounded-lg p-6 w-full max-w-xs shadow-lg">
@@ -298,11 +295,16 @@
         <label class="font-semibold mb-1 block">Nueva contraseña:</label>
         <input type="password" id="nuevaPassword" class="w-full border px-3 py-2 rounded" required>
       </div>
+      <div class="mb-4">
+        <label class="font-semibold mb-1 block">Repetir contraseña:</label>
+        <input type="password" id="repetirPassword" class="w-full border px-3 py-2 rounded" required>
+      </div>
       <button class="bg-blue-600 text-white px-4 py-2 rounded w-full" type="submit">Cambiar</button>
       <button class="mt-2 text-gray-500 hover:text-gray-800 w-full" type="button" onclick="cerrarModalCambiarPassword()">Cancelar</button>
     </form>
   </div>
 </div>
+
 
         
     </section>
@@ -320,8 +322,7 @@
     <script src="/assets/js/js/permissions.js"></script>
     <script src="/assets/js/js/userActions.js"></script>
     <script src="/assets/js/js/cambiarPassword.js"></script>
-    <script src="/assets/js/js/verPass.js"></script>
-    <script src="/assets/js/js/init.js"></script>
+    <script src="/assets/js/js/pageAccess.js"></script>
     <script src="/assets/js/js/restriccionacceso.js"></script>
 </body>
 </html>
