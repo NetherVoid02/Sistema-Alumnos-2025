@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
 </head>
 <body>
+
+    <!-- Sprite oculto -->
+    <div id="svg-sprite" style="display:none"></div>
+
     <!-- Div donde se mostrarán los iconos -->
     <div id="icon-container"></div>
     
@@ -19,7 +23,9 @@
                     <div class="flex items-center justify-between">
                         <div class="flex items-center space-x-4">
                             <div class="bg-white/20 p-2 rounded-lg">
-                                <img src="/estilos escuela/user.svg" alt="Logo" class="h-8 w-8 rounded-full">
+                                <svg class="superIcono rojo">
+                                    <use xlink:href="#user-outline"></use>
+                                </svg>
                             </div>
                             <div>
                                 <h1 class="text-2xl font-bold">E.E.S.T N°4</h1>
@@ -28,12 +34,16 @@
                         </div>
                         <div class="flex items-center space-x-4">
                             <div class="flex items-center space-x-2 bg-white/10 px-3 py-2 rounded-lg">
-                                
+                                <svg class="icono rojo">
+                                    <use xlink:href="#user-outline"></use>
+                                </svg>
                                 <span class="text-sm">Hola, Administrador</span>
                             </div>
                               <button id="cerrarSesion"
                             class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border hover:text-accent-foreground h-9 rounded-md px-3 bg-white/10 border-white/20 text-white hover:bg-white/20">
-                            <img src="/estilos escuela/cerrarSesion.svg" alt="" class="h-5 w-5 mr-2">
+                            <svg class="icono rojo">
+                                <use xlink:href="#logout"></use>
+                            </svg>
                             Cerrar sesión
                         </button>
                         </div>
@@ -47,37 +57,51 @@
                     <div class="flex space-x-1 overflow-x-auto py-2">
                         <a onclick="cargarVista('inicio.html')"
                             class="justify-center gap-2 rounded-md ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-secondary/80 h-10 flex items-center space-x-2 whitespace-nowrap px-4 py-2 text-sm font-medium transition-all bg-white text-blue-800 shadow-sm">
-                            <img src="/estilos escuela/home.svg" alt="" class="size-4 shrink-0">
+                            <svg class="icono rojo">
+                                <use xlink:href="#home-outline"></use>
+                            </svg>
                             <span>Inicio</span>
                         </a>
                         <a onclick="cargarVista('ofiAlumnos.html')"
                             class="justify-center gap-2 rounded-md ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 h-10 flex items-center space-x-2 whitespace-nowrap px-4 py-2 text-sm font-medium transition-all text-blue-100 hover:bg-blue-600 hover:text-white">
-                            <img src="/estilos escuela/users.svg" alt="" class="size-4 shrink-0">
+                            <svg class="icono rojo">
+                                <use xlink:href="#briefcase-outline"></use>
+                            </svg>
                             <span>Oficina de Alumnos</span>
                         </a>
                         <a onclick="cargarVista('cursos.html')"
                             class="justify-center gap-2 rounded-md ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 h-10 flex items-center space-x-2 whitespace-nowrap px-4 py-2 text-sm font-medium transition-all text-blue-100 hover:bg-blue-600 hover:text-white">
-                            <img src="/estilos escuela/book-open.svg" alt="" class="size-4 shrink-0">
+                            <svg class="icono rojo">
+                                <use xlink:href="#book-open-outline"></use>
+                            </svg>
                             <span>Gestión cursos</span>
                         </a>
                         <a onclick="cargarVista('gestionAcademica.html')"
                             class="justify-center gap-2 rounded-md ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 h-10 flex items-center space-x-2 whitespace-nowrap px-4 py-2 text-sm font-medium transition-all text-blue-100 hover:bg-blue-600 hover:text-white">
-                            <img src="/estilos escuela/graduation-cap.svg" alt="" class="size-4 shrink-0">
+                            <svg class="icono rojo">
+                                <use xlink:href="#graduation-cap-outline"></use>
+                            </svg>
                             <span>Gestión Académica</span>
                         </a>
                         <a onclick="cargarVista('gestionUsuarios.html')"
                             class="justify-center gap-2 rounded-md ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 h-10 flex items-center space-x-2 whitespace-nowrap px-4 py-2 text-sm font-medium transition-all text-blue-100 hover:bg-blue-600 hover:text-white">
-                            <img src="/estilos escuela/shield.svg" alt="" class="size-4 shrink-0">
+                            <svg class="icono rojo">
+                                <use xlink:href="#user-group-outline"></use>
+                            </svg>
                             <span>Administración de Usuarios</span>
                         </a>
                         <a onclick="cargarVista('bitacora.html')"
                             class="justify-center gap-2 rounded-md ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 h-10 flex items-center space-x-2 whitespace-nowrap px-4 py-2 text-sm font-medium transition-all text-blue-100 hover:bg-blue-600 hover:text-white">
-                            <img src="/estilos escuela/key.svg" alt="" class="size-4 shrink-0">
+                            <svg class="icono rojo">
+                                <use xlink:href="#comand-line-outline"></use>
+                            </svg>
                             <span>Bitácora</span>
                         </a>
                         <a onclick="cargarVista('config.html')"
                             class="justify-center gap-2 rounded-md ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 h-10 flex items-center space-x-2 whitespace-nowrap px-4 py-2 text-sm font-medium transition-all text-blue-100 hover:bg-blue-600 hover:text-white">
-                            <img src="/estilos escuela/settings.svg" alt="" class="size-4 shrink-0">
+                            <svg class="icono rojo">
+                                <use xlink:href="#config-outline"></use>
+                            </svg>
                             <span>Configuración</span>
                         </a>
                     </div>
@@ -104,7 +128,7 @@
             </div>
         </div>
     </div>
-    <script src="assets/js/ui.js"></script>
+    <script src="/assets/js/ui.js"></script>
     <script src="/assets/js/js/pageProtection.js"></script>
     
 </body>

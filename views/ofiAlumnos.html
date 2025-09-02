@@ -12,6 +12,10 @@
 </head>
 
 <body>
+
+    <!-- Sprite oculto -->
+    <div id="svg-sprite" style="display:none"></div>
+
     <div class="min-h-screen bg-gray-50">
     
         <div class="space-y-6">
@@ -23,26 +27,17 @@
                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                  <button onclick="mostrarModal(document.getElementById('modalFormAlumno'))"
                    class="rounded-lg border bg-card text-card-foreground shadow-sm hover:shadow-md transition-shadow cursor-pointer w-full p-6 text-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                             stroke-linecap="round" stroke-linejoin="round"
-                             class="lucide lucide-user-plus h-12 w-12 text-blue-600 mx-auto mb-3">
-                             <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-                             <circle cx="9" cy="7" r="4"></circle>
-                             <line x1="19" x2="19" y1="8" y2="14"></line>
-                             <line x1="22" x2="16" y1="11" y2="11"></line>
-                        </svg><h3 class="font-semibold text-gray-900 mb-2">Nueva Inscripción</h3>
+                        <svg class="superDuperIcono rojo mx-auto">
+                            <use xlink:href="#user-plus-outline"></use>
+                        </svg>
+                        <h3 class="font-semibold text-gray-900 mb-2">Nueva Inscripción</h3>
                         <p class="text-sm text-gray-600">Registrar nuevo estudiante</p>
                  </button>
                 <div
                     class="rounded-lg border bg-card text-card-foreground shadow-sm hover:shadow-md transition-shadow cursor-pointer">
                     <div class="p-6 text-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-rotate-ccw h-12 w-12 text-green-600 mx-auto mb-3">
-                            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
-                            <path d="M3 3v5h5"></path>
+                        <svg class="superDuperIcono rojo mx-auto">
+                            <use xlink:href="#arrow-roundsquare"></use>
                         </svg>
                         <h3 class="font-semibold text-gray-900 mb-2">Reinscripción</h3>
                         <p class="text-sm text-gray-600">Actualizar inscripción anual</p>
@@ -52,14 +47,9 @@
                 
                    <div class="p-6 text-center">
                     <button onclick="mostrarModal(document.getElementById('buscadorAlumno'))">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                          viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                          stroke-linecap="round" stroke-linejoin="round"
-                          class="lucide lucide-square-pen h-12 w-12 text-orange-600 mx-auto mb-3">
-                         <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                         <path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z">
-                         </path>
-                       </svg>
+                        <svg class="superDuperIcono rojo mx-auto">
+                            <use xlink:href="#pencil-square-outline"></use>
+                        </svg>
                     <h3 class="font-semibold text-gray-900 mb-2">Actualizar Datos</h3>
                     <p class="text-sm text-gray-600">Modificar información personal</p>
                     </button>
@@ -69,15 +59,8 @@
                     class="rounded-lg border bg-card text-card-foreground shadow-sm hover:shadow-md transition-shadow cursor-pointer">
                     <div class="p-6 text-center">
                       <button onclick="mostrarModal(document.getElementById('buscadorTutor'))">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-file-text h-12 w-12 text-purple-600 mx-auto mb-3">
-                            <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
-                            <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
-                            <path d="M10 9H8"></path>
-                            <path d="M16 13H8"></path>
-                            <path d="M16 17H8"></path>
+                      <svg class="superDuperIcono rojo mx-auto">
+                            <use xlink:href="#search"></use>
                         </svg>
                         <h3 class="font-semibold text-gray-900 mb-2">Consultar tutor</h3>
                         <p class="text-sm text-gray-600">Informacion de tutor</p>
@@ -403,6 +386,15 @@
 <script src="/assets/js/modal.js"></script>
 <script src="/assets/js/js/pageAccess.js"></script>
 <script src="/assets/js/validacionesFormulario.js"></script>
+
+<script>
+    //Cargar iconos
+    fetch('/assets/icons/iconos.svg')
+    .then(res => res.text())
+    .then(data => {
+        document.getElementById('svg-sprite').innerHTML = data;
+    });
+</script>
 
 </body>
 

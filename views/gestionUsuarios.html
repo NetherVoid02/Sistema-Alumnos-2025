@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administración de Usuarios</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/css/base.css">
 </head>
 <body>
+
+    <!-- Sprite oculto -->
+    <div id="svg-sprite" style="display:none"></div>
+
     <div id="root">
         <div class="bg-gray-50">
             <div class="bg-white rounded-lg shadow-sm border p-4 mb-2">
@@ -19,43 +24,29 @@
                 <div onclick="abrirModalAgregarUsuario()" class="rounded-lg border bg-card text-card-foreground shadow-sm hover:shadow-md transition-shadow cursor-pointer w-64 flex-shrink-0">
                     <div class="p-3 text-center">
                         <!-- Icono usuario nuevo  -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto mb-2 h-12 w-12 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                            <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2" fill="none"></circle>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M16 11h6m-3-3v6"/>
+                        <svg class="superDuperIcono rojo mx-auto">
+                            <use xlink:href="#user-plus-outline"></use>
                         </svg>
                         <h3 class="font-semibold text-gray-900 mb-1">Crear Usuario</h3>
                         <p class="text-sm text-gray-600">Alta de nuevos usuarios con roles</p>
                     </div>
                 </div>
                 <!-- Gestionar Grupos -->
-  <div onclick="abrirModalGestionarGrupos()" class="rounded-lg border bg-card text-card-foreground shadow-sm hover:shadow-md transition-shadow cursor-pointer w-64 flex-shrink-0">
-    <div class="p-3 text-center">
-        <!-- Icono SVG -->
-        <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto mb-2 h-12 w-12 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-           
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7a3 3 0 1 1 6 0 3 3 0 0 1-6 0z" />
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 21v-2a4 4 0 0 1 4-4h2a4 4 0 0 1 4 4v2" />
-           
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 11a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" />
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 21v-1a3 3 0 0 1 3-3h1" />
-        </svg>
-        <h3 class="font-semibold text-gray-900 mb-1">Gestionar Grupos</h3>
-        <p class="text-sm text-gray-600">Cambiar grupo de los usuarios</p>
-    </div>
-</div>
+                <div onclick="abrirModalGestionarGrupos()" class="rounded-lg border bg-card text-card-foreground shadow-sm hover:shadow-md transition-shadow cursor-pointer w-64 flex-shrink-0">
+                    <div class="p-3 text-center">
+                        <svg class="superDuperIcono rojo mx-auto">
+                            <use xlink:href="#user-group-outline"></use>
+                        </svg>
+                        <h3 class="font-semibold text-gray-900 mb-1">Gestionar Grupos</h3>
+                        <p class="text-sm text-gray-600">Cambiar grupo de los usuarios</p>
+                    </div>
+                </div>
                 <!-- Gestionar Permisos -->
                 <div onclick="abrirModalGestionarPermisos()" class="rounded-lg border bg-card text-card-foreground shadow-sm hover:shadow-md transition-shadow cursor-pointer w-64 flex-shrink-0">
                     <div class="p-3 text-center">
                         <!-- Icono permisos/seguridad -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto mb-2 h-12 w-12 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path fill="currentColor" d="M12 3l8 4v5c0 5.25-3.5 10-8 10S4 17.25 4 12V7l8-4z" opacity="0.1"/>
-                            <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                d="M12 3l8 4v5c0 5.25-3.5 10-8 10S4 17.25 4 12V7l8-4z"/>
-                            <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                d="M9 12l2 2 4-4"/>
+                        <svg class="superDuperIcono rojo mx-auto">
+                            <use xlink:href="#config-outline"></use>
                         </svg>
                         <h3 class="font-semibold text-gray-900 mb-1">Gestionar Permisos</h3>
                         <p class="text-sm text-gray-600">Roles y accesos del sistema</p>
@@ -169,13 +160,8 @@
             <div class="flex-1 rounded-lg border bg-card text-card-foreground shadow-sm">
                 <div class="flex flex-col space-y-1.5 p-6">
                     <h3 class="text-2xl font-semibold leading-none tracking-tight flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="lucide lucide-users h-5 w-5 mr-2">
-                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="9" cy="7" r="4"></circle>
-                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        <svg class="icono rojo mr-2">
+                            <use xlink:href="#users-outline"></use>
                         </svg>
                         Usuarios por Rol
                     </h3>
@@ -190,12 +176,8 @@
             <div class="flex-1 rounded-lg border bg-card text-card-foreground shadow-sm">
                 <div class="flex flex-col space-y-1.5 p-6">
                     <h3 class="text-2xl font-semibold leading-none tracking-tight flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="lucide lucide-key h-5 w-5 mr-2">
-                            <path d="m15.5 7.5 2.3 2.3a1 1 0 0 0 1.4 0l2.1-2.1a1 1 0 0 0 0-1.4L19 4"></path>
-                            <path d="m21 2-9.6 9.6"></path>
-                            <circle cx="7.5" cy="15.5" r="5.5"></circle>
+                        <svg class="icono rojo mr-2">
+                            <use xlink:href="#key-outline"></use>
                         </svg>
                         Seguridad de Contraseñas
                     </h3>
@@ -216,7 +198,11 @@
 <!-- TABLA DE USUARIOS -->
         <section id="usuarios-section" class="mt-8">
             <h2 class="text-2xl font-bold flex items-center mb-4">
-                <span class="mr-2">👤</span> Tabla de Usuarios
+                <span class="mr-2">
+                    <svg class="icono rojo mr-2">
+                        <use xlink:href="#user-outline"></use>
+                    </svg>
+                </span> Tabla de Usuarios
             </h2>
             <div class="flex mb-4 space-x-2">
                 <input id="buscador" type="text" placeholder="Buscar por nombre o DNI..." class="border px-4 py-2 rounded flex-1">
@@ -324,6 +310,15 @@
     <script src="/assets/js/js/cambiarPassword.js"></script>
     <script src="/assets/js/js/pageAccess.js"></script>
     <script src="/assets/js/js/restriccionacceso.js"></script>
+    <script>
+        //Cargar iconos
+        fetch('/assets/icons/iconos.svg')
+        .then(res => res.text())
+        .then(data => {
+            document.getElementById('svg-sprite').innerHTML = data;
+        });
+    </script>
+    <script src="/assets/js/ui.js"></script>
 </body>
 </html>
    

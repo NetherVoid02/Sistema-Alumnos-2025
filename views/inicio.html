@@ -3,6 +3,10 @@
 
 </head>
 <body>
+
+    <!-- Sprite oculto -->
+    <div id="svg-sprite" style="display:none"></div>
+
     <div class="space-y-6">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
            
@@ -12,28 +16,11 @@
                         <div>
                             <p class="text-sm font-medium text-gray-600">Total Alumnos</p>
                             <p class="text-3xl font-bold text-gray-900">1,234</p>
-                            <p class="text-sm text-green-600 flex items-center mt-1">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
-                                    class="lucide lucide-trending-up h-4 w-4 mr-1">
-                                    <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
-                                    <polyline points="16 7 22 7 22 13"></polyline>
-                                </svg>
-                                +12%
-                            </p>
                         </div>
                         <div class="bg-blue-500 p-3 rounded-full">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                class="lucide lucide-users h-6 w-6 text-white">
-                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="9" cy="7" r="4"></circle>
-                                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                            </svg>
+                            <svg class="superIcono rojo">
+                                    <use xlink:href="#user-outline"></use>
+                                </svg>
                         </div>
                     </div>
                 </div>
@@ -44,24 +31,12 @@
                         <div>
                             <p class="text-sm font-medium text-gray-600">Cursos Activos</p>
                             <p class="text-3xl font-bold text-gray-900">45</p>
-                            <p class="text-sm text-green-600 flex items-center mt-1"><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
-                                    class="lucide lucide-trending-up h-4 w-4 mr-1">
-                                    <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
-                                    <polyline points="16 7 22 7 22 13"></polyline>
-                                </svg>+5%</p>
                         </div>
-                        <div class="bg-green-500 p-3 rounded-full"><svg xmlns="http://www.w3.org/2000/svg"
-                                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                class="lucide lucide-book-open h-6 w-6 text-white">
-                                <path d="M12 7v14"></path>
-                                <path
-                                    d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z">
-                                </path>
-                            </svg></div>
+                        <div class="bg-green-500 p-3 rounded-full">
+                            <svg class="superIcono rojo">
+                                <use xlink:href="#book-open-outline"></use>
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -71,25 +46,12 @@
                         <div>
                             <p class="text-sm font-medium text-gray-600">Egresados</p>
                             <p class="text-3xl font-bold text-gray-900">856</p>
-                            <p class="text-sm text-green-600 flex items-center mt-1"><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
-                                    class="lucide lucide-trending-up h-4 w-4 mr-1">
-                                    <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
-                                    <polyline points="16 7 22 7 22 13"></polyline>
-                                </svg>+8%</p>
                         </div>
-                        <div class="bg-purple-500 p-3 rounded-full"><svg xmlns="http://www.w3.org/2000/svg"
-                                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                class="lucide lucide-graduation-cap h-6 w-6 text-white">
-                                <path
-                                    d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z">
-                                </path>
-                                <path d="M22 10v6"></path>
-                                <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path>
-                            </svg></div>
+                        <div class="bg-purple-500 p-3 rounded-full">
+                            <svg class="superIcono rojo">
+                                <use xlink:href="#graduation-cap-outline"></use>
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -99,24 +61,12 @@
                         <div>
                             <p class="text-sm font-medium text-gray-600">Promedio General</p>
                             <p class="text-3xl font-bold text-gray-900">7.8</p>
-                            <p class="text-sm text-green-600 flex items-center mt-1"><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
-                                    class="lucide lucide-trending-up h-4 w-4 mr-1">
-                                    <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
-                                    <polyline points="16 7 22 7 22 13"></polyline>
-                                </svg>+0.3</p>
                         </div>
-                        <div class="bg-orange-500 p-3 rounded-full"><svg xmlns="http://www.w3.org/2000/svg"
-                                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                class="lucide lucide-award h-6 w-6 text-white">
-                                <path
-                                    d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526">
-                                </path>
-                                <circle cx="12" cy="8" r="6"></circle>
-                            </svg></div>
+                        <div class="bg-yellow-500 p-3 rounded-full">
+                            <svg class="superIcono rojo">
+                                <use xlink:href="#star-outline"></use>
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -142,39 +92,32 @@
                     <div class="grid grid-cols-2 gap-4">
                         <!-- Botón Inscribir Alumno -->
                         <button class="p-4 text-left rounded-lg border border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users h-8 w-8 text-blue-600 mb-2">
-                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="9" cy="7" r="4"></circle>
-                                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            <svg class="icono rojo">
+                                <use xlink:href="#user-plus-outline"></use>
                             </svg>
                             <h3 class="font-semibold text-gray-900">Inscribir Alumno</h3>
                             <p class="text-sm text-gray-600">Registrar nuevo estudiante</p>
                         </button>
                         <!-- Botón Crear Curso -->
                         <button class="p-4 text-left rounded-lg border border-gray-200 hover:border-green-300 hover:bg-green-50 transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open h-8 w-8 text-green-600 mb-2">
-                                <path d="M12 7v14"></path>
-                                <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path>
+                            <svg class="icono rojo">
+                                <use xlink:href="#book-open-outline"></use>
                             </svg>
                             <h3 class="font-semibold text-gray-900">Crear Curso</h3>
                             <p class="text-sm text-gray-600">Nuevo curso académico</p>
                         </button>
                         <!-- Botón Cargar Notas -->
                         <button class="p-4 text-left rounded-lg border border-gray-200 hover:border-purple-300 hover:bg-purple-50 transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-graduation-cap h-8 w-8 text-purple-600 mb-2">
-                                <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path>
-                                <path d="M22 10v6"></path>
-                                <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path>
+                            <svg class="icono rojo">
+                                <use xlink:href="#graduation-cap-outline"></use>
                             </svg>
                             <h3 class="font-semibold text-gray-900">Cargar Notas</h3>
                             <p class="text-sm text-gray-600">Registrar calificaciones</p>
                         </button>
                         <!-- Botón Generar Pase -->
                         <button class="p-4 text-left rounded-lg border border-gray-200 hover:border-orange-300 hover:bg-orange-50 transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-award h-8 w-8 text-orange-600 mb-2">
-                                <path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path>
-                                <circle cx="12" cy="8" r="6"></circle>
+                            <svg class="icono rojo">
+                                <use xlink:href="#arrow-roundsquare"></use>
                             </svg>
                             <h3 class="font-semibold text-gray-900">Generar Pase</h3>
                             <p class="text-sm text-gray-600">Documentación de transferencia</p>
@@ -232,5 +175,13 @@
     window.addEventListener('DOMContentLoaded', cargarActividadReciente);
     </script>
     <script src="/assets/js/js/pageAccess.js"></script>
+    <script>
+        //Cargar iconos
+        fetch('/assets/icons/iconos.svg')
+        .then(res => res.text())
+        .then(data => {
+            document.getElementById('svg-sprite').innerHTML = data;
+        });
+    </script>
 </body>
 </html>

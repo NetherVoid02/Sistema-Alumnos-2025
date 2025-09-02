@@ -10,6 +10,10 @@
 </head>
 
 <body>
+
+    <!-- Sprite oculto -->
+    <div id="svg-sprite" style="display:none"></div>
+
     <div class="min-h-screen bg-gray-50">
         <div class="space-y-6">
             <div class="bg-white rounded-lg shadow-sm border p-6">
@@ -103,6 +107,14 @@
    
 <script src="/assets/js/js/bitacora.js"></script>
 <script src="/assets/js/js/pageAccess.js"></script>
+<script>
+    //Cargar iconos
+    fetch('/assets/icons/iconos.svg')
+    .then(res => res.text())
+    .then(data => {
+        document.getElementById('svg-sprite').innerHTML = data;
+    });
+</script>
 </body>
 
 </html>

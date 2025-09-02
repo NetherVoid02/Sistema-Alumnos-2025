@@ -7,9 +7,14 @@
     <title>Document</title>
     <!-- conexion tailwind  -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/css/base.css">
 </head>
 
 <body>
+
+    <!-- Sprite oculto -->
+    <div id="svg-sprite" style="display:none"></div>
+
     <div id="root">
         <div class="min-h-screen bg-gray-50">
             <div class="space-y-6">
@@ -142,6 +147,14 @@
         </div>
     </div>
     <script src="/assets/js/js/pageAccess.js"></script>
+    <script>
+        //Cargar iconos
+        fetch('/assets/icons/iconos.svg')
+        .then(res => res.text())
+        .then(data => {
+            document.getElementById('svg-sprite').innerHTML = data;
+        });
+    </script>
 </body>
 
 </html>
