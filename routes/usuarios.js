@@ -205,6 +205,14 @@ router.post('/', async (req, res) => {
     return res.status(400).send('La contraseña debe tener entre 8 y 16 caracteres, incluir mayúsculas, minúsculas, números y caracteres especiales.');
   }
   try {
+    // PRIMERO VERIFICAR SI EL DNI YA EXISTE
+    const existeDni = await db.query(
+      `SELECT id_usuario FROM usuarios WHERE dni = $1 LIMIT 1`, [dni]
+    );
+    if (existeDni.rows.length > 0) {
+      return res.status(400).send('El DNI ya se encuentra en la base de datos.');
+    }
+
     // Crear usuario
     const insertUser = await db.query(
       `INSERT INTO usuarios (nombre, pass, dni, id_rol, id_grupo, deshabilitado, bloqueado, intentos) VALUES ($1,$2,$3,$4,$5,false,false,0) RETURNING id_usuario`,
@@ -221,6 +229,7 @@ router.post('/', async (req, res) => {
     res.status(500).send('Error agregando usuario');
   }
 });
+
 
 // Deshabilitar usuario
 router.put('/:id/deshabilitar', async (req, res) => {

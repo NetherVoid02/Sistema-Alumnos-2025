@@ -1,17 +1,39 @@
 /* ===== Contenido principal (iframe) ===== */
 
-main iframe#contenido {
-  display: flex;
-  flex-direction: column;
-  height: 74vh ;
-  width: 100%;
-}
-
 iframe#contenido {
   width: 100%;
   border: none;
   display: block;
   overflow: hidden; /* Oculta scroll interno */
   height: auto; /* Importante para poder cambiar desde JS */
-  min-height: 100px; /* Opcional, para que no colapse si vacío */
+  min-height: 74vh; /* Opcional, para que no colapse si vacío */
+}
+
+
+.icono{
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+.rojo{
+  color: red;
+}
+
+.superIcono{
+  width: 32px;
+  height: 32px;
+  fill: currentColor;
+}
+
+.miniIcono{
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.superDuperIcono{
+  width: 50px;
+  height: 50px;
+  fill: currentColor;
 }

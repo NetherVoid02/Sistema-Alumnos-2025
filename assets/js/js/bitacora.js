@@ -83,20 +83,26 @@ document.addEventListener('DOMContentLoaded', function() {
             tablaBitacoraBody.innerHTML = "";
             if (data.logs && data.logs.length > 0) {
                 noDatos.classList.add('hidden');
-                data.logs.forEach(log => {
-                    tablaBitacoraBody.innerHTML += `
-                        <tr>
-                            <td class="px-4 py-2">${log.hora_y_fecha ? log.hora_y_fecha.replace('T', ' ').substring(0, 19) : ''}</td>
-                            <td class="px-4 py-2">${log.usuario || ''}</td>
-                            <td class="px-4 py-2">${log.operacion || ''}</td>
-                            <td class="px-4 py-2">${log.detalle || ''}</td>
-                            <td class="px-4 py-2">${log.ip || ''}</td>
-                            <td class="px-4 py-2">${log.mac || ''}</td>
-                            <td class="px-4 py-2">${log.usuario_afectado || ''}</td>
-                        </tr>
-                    `;
-                });
+               data.logs.forEach(log => {
+    const date = new Date(log.hora_y_fecha);
+    const fechaLocal = date.toLocaleString('es-AR', {
+        timeZone: 'America/Argentina/Buenos_Aires',
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', second: '2-digit'
+    });
 
+    tablaBitacoraBody.innerHTML += `
+        <tr>
+            <td class="px-4 py-2">${fechaLocal}</td>
+            <td class="px-4 py-2">${log.usuario || ''}</td>
+            <td class="px-4 py-2">${log.operacion || ''}</td>
+            <td class="px-4 py-2">${log.detalle || ''}</td>
+            <td class="px-4 py-2">${log.ip || ''}</td>
+            <td class="px-4 py-2">${log.mac || ''}</td>
+            <td class="px-4 py-2">${log.usuario_afectado || ''}</td>
+        </tr>
+    `;
+});
                 // PAGINACIÓN INFO
                 const inicio = (paginaLog - 1) * limiteLog + 1;
                 const fin = Math.min(paginaLog * limiteLog, data.total);

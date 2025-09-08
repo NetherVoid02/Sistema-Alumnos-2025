@@ -2,7 +2,7 @@
 // Si no hay ningún usuario en el almacenamiento local, redirigir al inicio de sesión
 // Mostrar también un saludo personalizado en la esquina superior derecha
 if (!localStorage.getItem('usuario')) {
-    window.location.href = "../views/Login.html";
+    window.location.href = "../views/login.html";
 }
 
 const usuario = JSON.parse(localStorage.getItem('usuario'));
